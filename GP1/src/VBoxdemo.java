@@ -20,6 +20,8 @@ public class VBoxdemo extends Application {
 
     Label label1;
     Label label2;
+    Button button1;
+    Button button2;
     int counterLabel1 = 0;
     int counterLabel2 = 0;
 
@@ -28,8 +30,9 @@ public class VBoxdemo extends Application {
         label1= new Label(counterLabel1+"");
         label2 = new Label(counterLabel2+"");
 
-        Button button1 = new Button("Increment Label 1");
-        Button button2 = new Button("Increment Label 2");
+        button1 = new Button("Increment Label 1");
+        button2 = new Button("Increment Label 2");
+
         ButtonHandler buttonHandler = new ButtonHandler();
         button1.setOnAction(buttonHandler);
         button2.setOnAction(buttonHandler);
@@ -44,18 +47,19 @@ public class VBoxdemo extends Application {
     private class ButtonHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            //Crates a button and casts the event.get source to a button to be used in the Alert
+            //Creates a button and casts the event.get source to a button to be used in the Alert
             Button eventSource = ((Button) event.getSource());
             //Alert alert = new Alert(Alert.AlertType.INFORMATION, eventSource.getText());
             //alert.showAndWait();
 
             //Checks witch Button was clicked
             //System.out.println(eventSource.getText().charAt(eventSource.getText().length() - 1));
-            if(eventSource.getText().charAt(eventSource.getText().length() - 1) == '1') {
-                label1.setText((counterLabel1 += 1) + "");
+            //Compares the object Id
+            if(eventSource == button1) {
+                label1.setText(++counterLabel1 + "");
             }
             else {
-                label2.setText((counterLabel2 += 1) + "");
+                label2.setText(++counterLabel2 + "");
             }
         }
     }
